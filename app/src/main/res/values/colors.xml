@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mocha dark theme colors -->
+    <color name="moviebox_primary">#89B4FA</color>
+    <color name="moviebox_primary_variant">#6C7086</color>
+    <color name="moviebox_on_primary">#1E1E2E</color>
+
+    <color name="moviebox_secondary">#F5C2E7</color>
+    <color name="moviebox_secondary_variant">#45475A</color>
+    <color name="moviebox_on_secondary">#1E1E2E</color>
+
+    <color name="moviebox_surface">#1E1E2E</color>
+    <color name="moviebox_on_surface">#CDD6F4</color>
+    <color name="moviebox_surface_variant">#313244</color>
+    <color name="moviebox_on_surface_variant">#BAC2DE</color>
+
+    <color name="moviebox_background">#1E1E2E</color>
+    <color name="moviebox_on_background">#CDD6F4</color>
+
+    <color name="moviebox_error">#F38BA8</color>
+    <color name="moviebox_on_error">#1E1E2E</color>
+
+    <color name="moviebox_outline">#585B70</color>
+
+    <!-- Provider colors -->
+    <color name="provider_moviebox_color">#89B4FA</color>
+    <color name="provider_fourkhdhub_color">#F5C2E7</color>
+    <color name="provider_circleftp_color">#A6E3A1</color>
+    <color name="provider_dhakaflix_color">#89B4FA</color>
+    <color name="provider_dramachi_color">#FAE3B0</color>
+</resources>
