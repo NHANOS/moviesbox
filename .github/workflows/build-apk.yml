@@ -16,9 +16,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - uses: android-actions/setup-android@v3
+      # Android SDK runner पर पहले से installed है, बस licenses accept करनी हैं
+      - name: Accept Android licenses
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
 
-      # gradlew नहीं है, इसलिए Gradle खुद install हो रहा है
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.5
