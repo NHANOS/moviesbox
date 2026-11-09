@@ -3,56 +3,30 @@ name: Build MovieBox APK
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
   workflow_dispatch:
 
 jobs:
   build-apk:
-    name: Build Android APK
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
-          cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+      - uses: android-actions/setup-android@v3
 
-      - name: Cache Gradle modules
-        uses: actions/cache@v4
+      # gradlew नहीं है, इसलिए Gradle खुद install हो रहा है
+      - uses: gradle/actions/setup-gradle@v4
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/*.gradle.kts') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          gradle-version: 8.5
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          api-level: 34
-          ndk: false
+      - name: Build debug APK
+        run: gradle :app:assembleDebug --stacktrace
 
-      - name: Accept Android licenses
-        run: |
-          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
-          echo "Android licenses accepted"
-
-      - name: Assemble Debug APK
-        run: ./gradlew :app:assembleDebug
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: moviebox-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 30
+          path: app/build/outputs/apk/debug/*.apk
